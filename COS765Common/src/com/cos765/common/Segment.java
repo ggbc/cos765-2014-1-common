@@ -3,21 +3,20 @@ package com.cos765.common;
 public class Segment {
 	private byte order;
 	private byte[] payload;
-	private long timestamp;
+	private long time;
 
-	public Segment(byte order, byte[] payload, long timestamp)
-	{
-		this.order = order;
-		this.payload = payload;
-		this.timestamp = timestamp;
-	}
-	
-	public byte getOrder() {
-		return order;
+	public Segment(byte order, byte[] payload, long time) {
+		this.setOrder(order);
+		this.setPayload(payload);
+		this.setTime(time);
 	}
 
-	public void setOrder(byte order) {
-		this.order = order;
+	public long getTime() {
+		return time;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
 	}
 
 	public byte[] getPayload() {
@@ -28,12 +27,11 @@ public class Segment {
 		this.payload = payload;
 	}
 
-	public long getTimestamp() {
-		return timestamp;
+	public byte getOrder() {
+		return order;
 	}
 
-	public void setTimestamp(long timestamp) {
-		this.timestamp = timestamp;
+	public void setOrder(byte order) {
+		this.order = order;
 	}
-
 }
