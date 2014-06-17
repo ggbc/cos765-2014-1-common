@@ -1,6 +1,6 @@
 package com.cos765.common;
 
-public class Segment {
+public class Segment implements Comparable<Segment> {
 	private byte order;
 	private byte[] payload;
 	private long time;
@@ -10,6 +10,10 @@ public class Segment {
 		this.setPayload(payload);
 		this.setTime(time);
 	}
+	
+	public Segment(long time) {
+		this.setTime(time);
+	}	
 
 	public long getTime() {
 		return time;
@@ -33,5 +37,16 @@ public class Segment {
 
 	public void setOrder(byte order) {
 		this.order = order;
+	}
+
+	@Override
+	public int compareTo(Segment o) {
+		if (this.time > o.time) {
+			return 1;
+		} else if (this.time == o.time) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 }
