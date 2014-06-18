@@ -1,6 +1,5 @@
 package com.cos765.common;
 
-import java.util.Random;
 
 public class LossDelayEmulator {
 
