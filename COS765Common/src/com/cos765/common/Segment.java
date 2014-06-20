@@ -4,7 +4,9 @@ public class Segment implements Comparable<Segment> {
 	private byte order;
 	private byte[] payload;
 	private long time;
-
+	public static int PAYLOAD_SIZE = 160; // 160 bytes no payload por pacote
+	public static int HEADER_SIZE = 1; // 1 byte no cabeçalho por pacote	
+	
 	public Segment(byte order, byte[] payload, long time) {
 		this.setOrder(order);
 		this.setPayload(payload);
