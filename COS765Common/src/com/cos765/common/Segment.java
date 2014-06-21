@@ -3,9 +3,7 @@ package com.cos765.common;
 public class Segment implements Comparable<Segment> {
 	private byte order;
 	private byte[] payload;
-	private long time;
-	public static int PAYLOAD_SIZE = 160; // 160 bytes no payload por pacote
-	public static int HEADER_SIZE = 1; // 1 byte no cabeçalho por pacote	
+	private long time;	
 	
 	public Segment(byte order, byte[] payload, long time) {
 		this.setOrder(order);
@@ -13,10 +11,6 @@ public class Segment implements Comparable<Segment> {
 		this.setTime(time);
 	}
 	
-	public Segment(long time) {
-		this.setTime(time);
-	}	
-
 	public long getTime() {
 		return time;
 	}
