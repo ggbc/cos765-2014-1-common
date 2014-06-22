@@ -33,7 +33,7 @@ class Producer implements Runnable {
 	public void run() {
 		for (int i = 0; i < 7; i++) {
 			try {
-				System.out.println("Produzido: " + i);				
+				//System.out.println("Produzido: " + i);				
 				produce(i);				
 				Thread.sleep(500);				
 			} catch (InterruptedException ex) {
@@ -58,7 +58,7 @@ class Producer implements Runnable {
 			buffer.add(i);
 			buffer.notifyAll(); // só permite consumir quando esteve cheio em
 								// algum momento
-			System.out.println(buffer.toString());			
+			System.out.println("P: " + buffer.toString());			
 		}
 	}
 }
@@ -79,7 +79,8 @@ class Consumer implements Runnable {
 		while (true) {
 			try {
 				if (ProducerConsumerSolution.full) // se nao testar vai tentar consumir toda hora 
-					System.out.println("Consumido: " + consume());
+//					System.out.println("Consumido: " + consume());
+					consume();
 				Thread.sleep(20);
 			} catch (InterruptedException ex) {
 			}
@@ -87,7 +88,7 @@ class Consumer implements Runnable {
 	}
 
 	private int consume() throws InterruptedException {
-		// espere se não ficou cheio ainda 
+		// Se não ficou cheio ainda, espere 
 		while (ProducerConsumerSolution.full == false) {
 			synchronized (buffer) {
 				System.out.println("Buffer ainda não encheu. "
@@ -98,11 +99,13 @@ class Consumer implements Runnable {
 		}
 
 		synchronized (buffer) {
-			System.out.println("C: " + buffer.toString());			
+						
 			if (buffer.size() - 1 == 0)
 				ProducerConsumerSolution.full = false;
 			buffer.notifyAll();
-			return (Integer) buffer.remove(0);
+			Integer i = (Integer) buffer.remove(0);
+			System.out.println("C: " + buffer.toString());				
+			return i;					
 		}
 	}
 }
