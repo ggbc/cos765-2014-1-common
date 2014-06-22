@@ -8,11 +8,11 @@ public class ProducerConsumerSolution {
 	public static void main(String args[]) {
 
 		Vector sharedQueue = new Vector();
-		int size = 4;
+		int size = 4;		
 		Thread producer = new Thread(new Producer(sharedQueue, size, full),
-				"Producer");
+				"Produtor");
 		Thread consumer = new Thread(new Consumer(sharedQueue, size, full),
-				"Consumer");
+				"Consumidor");
 		producer.start();
 		consumer.start();
 	}
@@ -33,9 +33,9 @@ class Producer implements Runnable {
 	public void run() {
 		for (int i = 0; i < 7; i++) {
 			try {
-				System.out.println("Produced: " + i);				
-				produce(i);
-				Thread.sleep(500);
+				System.out.println("Produzido: " + i);				
+				produce(i);				
+				Thread.sleep(500);				
 			} catch (InterruptedException ex) {
 			}
 		}
@@ -58,6 +58,7 @@ class Producer implements Runnable {
 			buffer.add(i);
 			buffer.notifyAll(); // só permite consumir quando esteve cheio em
 								// algum momento
+			System.out.println(buffer.toString());			
 		}
 	}
 }
@@ -74,11 +75,11 @@ class Consumer implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public void run() { 
 		while (true) {
 			try {
-				if (ProducerConsumerSolution.full)
-					System.out.println("Consumed: " + consume());
+				if (ProducerConsumerSolution.full) // se nao testar vai tentar consumir toda hora 
+					System.out.println("Consumido: " + consume());
 				Thread.sleep(20);
 			} catch (InterruptedException ex) {
 			}
@@ -86,19 +87,20 @@ class Consumer implements Runnable {
 	}
 
 	private int consume() throws InterruptedException {
-
-		// wait if queue is empty
-		while (buffer.isEmpty()) {
+		// espere se não ficou cheio ainda 
+		while (ProducerConsumerSolution.full == false) {
 			synchronized (buffer) {
-				System.out.println("Buffer vazio. "
+				System.out.println("Buffer ainda não encheu. "
 						+ Thread.currentThread().getName()
 						+ " esperando, size: " + buffer.size());
-				ProducerConsumerSolution.full = false;
 				buffer.wait();
 			}
 		}
 
 		synchronized (buffer) {
+			System.out.println("C: " + buffer.toString());			
+			if (buffer.size() - 1 == 0)
+				ProducerConsumerSolution.full = false;
 			buffer.notifyAll();
 			return (Integer) buffer.remove(0);
 		}
