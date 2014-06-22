@@ -4,11 +4,19 @@ public class Segment implements Comparable<Segment> {
 	private byte order;
 	private byte[] payload;
 	private long time;	
+	public static int PAYLOAD_SIZE = 160; 	// usado em outras classes
+	public static int HEADER_SIZE = 1;		// usado em outras classes
+
 	
 	public Segment(byte order, byte[] payload, long time) {
 		this.setOrder(order);
 		this.setPayload(payload);
 		this.setTime(time);
+	}
+	
+	public Segment(byte order) {
+		//TODO: Apagar!!!!
+		this.order = order;
 	}
 	
 	public long getTime() {
