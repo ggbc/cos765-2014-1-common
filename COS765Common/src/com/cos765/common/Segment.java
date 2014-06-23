@@ -48,4 +48,9 @@ public class Segment implements Comparable<Segment> {
 			return -1;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "{" + getOrder() + ":" + getTime() + "}";		
+	}
 }
