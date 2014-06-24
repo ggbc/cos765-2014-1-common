@@ -1,15 +1,15 @@
 package com.cos765.common;
 
 public class Segment implements Comparable<Segment> {
-	private byte order;
+	private byte sequenceNumber;
 	private byte[] payload;
 	private long time;	
 	public static final int PAYLOAD_SIZE = 160; 	// usado em outras classes
 	public static final int HEADER_SIZE = 1;		// usado em outras classes
 
 	
-	public Segment(byte order, byte[] payload, long time) {
-		this.setOrder(order);
+	public Segment(byte sequenceNumber, byte[] payload, long time) {
+		this.setSequenceNumber(sequenceNumber);
 		this.setPayload(payload);
 		this.setTime(time);
 	}	
@@ -30,12 +30,12 @@ public class Segment implements Comparable<Segment> {
 		this.payload = payload;
 	}
 
-	public byte getOrder() {
-		return order;
+	public byte getSequenceNumber() {
+		return sequenceNumber;
 	}
 
-	public void setOrder(byte order) {
-		this.order = order;
+	public void setSequenceNumber(byte sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
 	}
 
 	@Override
@@ -51,6 +51,6 @@ public class Segment implements Comparable<Segment> {
 	
 	@Override
 	public String toString() {
-		return "{" + getOrder() + ":" + getTime() + "}";		
+		return "{" + getSequenceNumber() + ":" + getTime() + "}";		
 	}
 }
