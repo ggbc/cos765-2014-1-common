@@ -9,7 +9,7 @@ public class Common {
 	public static boolean returnedFromPause = false;
 	
 	
-	public static class Statistics {
+	public static class Metrics {
 		// Statistics
 		public static int receivedSegments = 0;
 		public static int expiredSegments = 0;
