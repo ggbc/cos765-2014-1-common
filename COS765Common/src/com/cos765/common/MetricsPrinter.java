@@ -14,12 +14,13 @@ public class MetricsPrinter implements Runnable {
 			}
 			// Contagem das estatísticas
 			System.out.println("");
-			System.out.println("seg RECEBIDOS/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS: " 
+			System.out.println("seg RECEBIDOS/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS/FRAÇÃO DE NÃO TOCADOS: " 
 					+ Metrics.receivedSegments + "/" 
 					+ Metrics.playedSegments + "/" 					
 					+ Metrics.expiredSegments + "/" 
 					+ Metrics.lostSegments + "/" 
-					+ Metrics.discardedSegments);
+					+ Metrics.discardedSegments + "/"
+					+ (Metrics.expiredSegments + Metrics.lostSegments + Metrics.discardedSegments)/Metrics.receivedSegments);
 			
 			System.out.println("Tempo total parado: " + Metrics.totalPauseTime + 
 					" #pausas: " + Metrics.pauseCount + 
