@@ -14,6 +14,8 @@ public class Common {
 		public static int receivedSegments = 0;
 		public static int expiredSegments = 0;
 		public static int lostSegments = 0;
+		public static int discardedSegments = 0;
+		public static int playedSegments = 0;		
 		public static long initialTransferTime = 0;
 		public static long totalTransferTime = 0;
 		public static int totalTransferSize = 0;		
