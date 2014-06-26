@@ -1,14 +1,14 @@
 package com.cos765.common;
 
 public class Segment implements Comparable<Segment> {
-	private byte sequenceNumber;
+	private int sequenceNumber;
 	private byte[] payload;
 	private long time;	
 	public static final int PAYLOAD_SIZE = 160; 	// usado em outras classes
-	public static final int HEADER_SIZE = 1;		// usado em outras classes
+	public static final int HEADER_SIZE = 4;		// usado em outras classes
 
 	
-	public Segment(byte sequenceNumber, byte[] payload, long time) {
+	public Segment(int sequenceNumber, byte[] payload, long time) {
 		this.setSequenceNumber(sequenceNumber);
 		this.setPayload(payload);
 		this.setTime(time);
@@ -30,11 +30,11 @@ public class Segment implements Comparable<Segment> {
 		this.payload = payload;
 	}
 
-	public byte getSequenceNumber() {
+	public int getSequenceNumber() {
 		return sequenceNumber;
 	}
 
-	public void setSequenceNumber(byte sequenceNumber) {
+	public void setSequenceNumber(int sequenceNumber) {
 		this.sequenceNumber = sequenceNumber;
 	}
 
