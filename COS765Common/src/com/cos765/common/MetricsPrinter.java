@@ -34,14 +34,15 @@ public class MetricsPrinter implements Runnable {
 				e.printStackTrace();
 			}
 			// Contagem das estatísticas
-			System.out.println("");
-			System.out.println("seg RECEBIDOS/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS/FRAÇÃO DE NÃO TOCADOS: " 
-					+ Metrics.receivedSegments + "/" 
+			System.out.println();
+			System.out.println("seg RECEBIDOS_UDP/RECEBIDOS_BUFFER/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS/FRAÇÃO DE NÃO TOCADOS: " 
+					+ Metrics.receivedByUDPSegments + "/"
+					+ Metrics.receivedByBufferSegments + "/"
 					+ Metrics.playedSegments + "/" 					
 					+ Metrics.expiredSegments + "/" 
 					+ Metrics.lostSegments + "/" 
 					+ Metrics.discardedSegments + "/"
-					+ (Metrics.expiredSegments + Metrics.lostSegments + Metrics.discardedSegments)*1.0/Metrics.receivedSegments);
+					+ (Metrics.expiredSegments + Metrics.lostSegments + Metrics.discardedSegments)*1.0/Metrics.receivedByBufferSegments);
 			
 			System.out.println("Tempo total parado: " + Metrics.totalPauseTime + 
 					" #pausas: " + Metrics.pauseCount + 
@@ -49,19 +50,19 @@ public class MetricsPrinter implements Runnable {
 			
 			System.out.println("Total recebido (bytes): " + Metrics.totalTransferSize + 
 					" Tempo total: " + Metrics.totalTransferTime + 
-					" Vazão: " + Metrics.throughput + " bps");
-			
-			System.out.println("");
-			
+					" Vazão: " + Metrics.throughput + " bps");			
+			System.out.println();
 			
 			
-			writer.println("seg RECEBIDOS/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS/FRAÇÃO DE NÃO TOCADOS: " 
-					+ Metrics.receivedSegments + "/" 
+			writer.println();
+			writer.println("seg RECEBIDOS_UDP/RECEBIDOS_BUFFER/TOCADOS/EXPIRADOS/PERDIDOS/DESCARTADOS/FRAÇÃO DE NÃO TOCADOS: " 
+					+ Metrics.receivedByUDPSegments + "/"
+					+ Metrics.receivedByBufferSegments + "/"
 					+ Metrics.playedSegments + "/" 					
 					+ Metrics.expiredSegments + "/" 
 					+ Metrics.lostSegments + "/" 
 					+ Metrics.discardedSegments + "/"
-					+ (Metrics.expiredSegments + Metrics.lostSegments + Metrics.discardedSegments)*1.0/Metrics.receivedSegments);
+					+ (Metrics.expiredSegments + Metrics.lostSegments + Metrics.discardedSegments)*1.0/Metrics.receivedByBufferSegments);
 			
 			writer.println("Tempo total parado: " + Metrics.totalPauseTime + 
 					" #pausas: " + Metrics.pauseCount + 
@@ -70,7 +71,7 @@ public class MetricsPrinter implements Runnable {
 			writer.println("Total recebido (bytes): " + Metrics.totalTransferSize + 
 					" Tempo total: " + Metrics.totalTransferTime + 
 					" Vazão: " + Metrics.throughput + " bps");
-			
+			writer.println();			
 			writer.flush();
 			
 		}

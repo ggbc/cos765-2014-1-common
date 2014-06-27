@@ -11,11 +11,12 @@ public class Common {
 	
 	public static class Metrics {
 		// Statistics
-		public static int receivedSegments = 0;
-		public static int expiredSegments = 0;
-		public static int lostSegments = 0;
-		public static int discardedSegments = 0;
-		public static int playedSegments = 0;		
+		public static int receivedByUDPSegments = 0; // recebidos na camada UDP
+		public static int receivedByBufferSegments= 0; // recebidos na camada UDP
+		public static int expiredSegments = 0; // ficaram fora de ordem após atraso
+		public static int lostSegments = 0; // peridos pela probabilidade p
+		public static int discardedSegments = 0; // buffer estava cheio, então foram descartados
+		public static int playedSegments = 0; 		
 		public static long initialTransferTime = 0;
 		public static long totalTransferTime = 0;
 		public static int totalTransferSize = 0;		
